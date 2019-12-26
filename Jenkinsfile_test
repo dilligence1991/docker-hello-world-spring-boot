@@ -1,6 +1,6 @@
 pipeline {
    agent any
-   def mvnHome = "/var/jenkins_home/maven/apache-maven-3.6.3"
+   //def mvnHome = "/var/jenkins_home/maven/apache-maven-3.6.3"
    stages {
       stage('clone repo') {
          steps {
@@ -9,7 +9,7 @@ pipeline {
       }
       stage('build archive') {
          steps {
-            sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package"
+            sh "/var/jenkins_home/maven/apache-maven-3.6.3/bin/mvn -Dmaven.test.failure.ignore clean package"
          }    
       }
    }
