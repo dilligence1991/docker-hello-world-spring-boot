@@ -12,6 +12,19 @@ pipeline {
             sh "/var/jenkins_home/maven/apache-maven-3.6.3/bin/mvn -Dmaven.test.failure.ignore clean package"
          }    
       }
+      stage('Publish tests Result'){
+         steps {
+          parallel(
+               publishJunitTestsResultsToJenkins: {
+                  echo "Publish junit Tests Results"
+		            junit '**/target/surefire-reports/TEST-*.xml'
+		             archive 'target/*.jar'
+               },
+               publishJunitTestsResultsToSonar: {
+                   echo "This is branch b"
+               })
+         }
+      }
    }
 }
 
