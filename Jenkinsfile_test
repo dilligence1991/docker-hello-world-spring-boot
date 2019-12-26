@@ -30,8 +30,10 @@ pipeline {
             sh "whoami"
             sh "ls -all /var/run/docker.sock"
             sh "mv ./target/hello*.jar ./data" 
-      
-            def dockerImage = docker.build("hello-world-java")
+            script {
+	    def dockerImage
+	    }
+            dockerImage = docker.build("hello-world-java")
          }    
       }
    }
