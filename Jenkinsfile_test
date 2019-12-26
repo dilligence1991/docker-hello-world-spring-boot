@@ -1,11 +1,16 @@
 pipeline {
    agent any
-
+   def mvnHome = "/var/jenkins_home/maven/apache-maven-3.6.3"
    stages {
       stage('clone repo') {
          steps {
             git 'https://github.com/dilligence1991/docker-hello-world-spring-boot.git'
          }
+      }
+      stage('build archive') {
+         steps {
+            sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package"
+         }    
       }
    }
 }
