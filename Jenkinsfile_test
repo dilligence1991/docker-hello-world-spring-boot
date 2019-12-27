@@ -33,7 +33,7 @@ pipeline {
             script {
 	    def dockerImage
 	    }
-            dockerImage = docker.build("hello-world-java")
+            //dockerImage = docker.build("hello-world-java")
          }    
       }
    }
