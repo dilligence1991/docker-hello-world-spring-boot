@@ -1,9 +1,10 @@
 pipeline {
    agent any
 
-   tool {
+   //tool {
      //maven 'apache-maven-3.6.3'
-   }
+   //}
+
    environment {
      def dockerImage
     // ip address of the docker private repository(nexus)
