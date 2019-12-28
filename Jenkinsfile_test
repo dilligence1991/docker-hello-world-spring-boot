@@ -1,6 +1,19 @@
 pipeline {
    agent any
-   //def mvnHome = "/var/jenkins_home/maven/apache-maven-3.6.3"
+
+   tool {
+     //maven 'apache-maven-3.6.3'
+   }
+   environment {
+     def dockerImage
+    // ip address of the docker private repository(nexus)
+    
+    def dockerRepoUrl = "localhost:8083"
+    def dockerImageName = "hello-world-java"
+    def dockerImageTag = "${dockerRepoUrl}/${dockerImageName}:${env.BUILD_NUMBER}"
+    
+
+   }
    stages {
       stage('clone repo') {
          steps {
@@ -25,17 +38,21 @@ pipeline {
                })
          }
       }
-      stage('Build Docker Image') {
+      stage('Build and Push Docker Image') {
          steps {
             sh "whoami"
             sh "ls -all /var/run/docker.sock"
             sh "mv ./target/hello*.jar ./data" 
-            script {
-	    def dockerImage
-	    }
-            //dockerImage = docker.build("hello-world-java")
+            
+            dir('target'){
+               dockerImage = docker.build("hello-world-java")
+               sh "docker login -u admin -p admin123 ${dockerRepoUrl}"
+            //docker tag local-image:tagname new-repo:tagname
+               sh "docker tag ${dockerImageName}:${dockerImageTag}"
+               sh "docker push ${dockerImageTag}"
+            }
+            
          }    
       }
    }
 }
-
