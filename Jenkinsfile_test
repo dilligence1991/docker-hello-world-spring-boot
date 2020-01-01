@@ -44,8 +44,8 @@ pipeline {
             sh "whoami"
             sh "ls -all /var/run/docker.sock"
 	    sh "pwd"
-            sh "mkdir data"
-            sh "cp ./target/hello*.jar ./data" 
+            //sh "mkdir data"
+            //sh "cp ./target/hello*.jar ./data" 
             
             //dir('target'){
                //dockerImage = docker.build("hello-world-java")
