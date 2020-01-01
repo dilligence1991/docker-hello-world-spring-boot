@@ -6,7 +6,7 @@ pipeline {
    //}
 
    environment {
-     def dockerImage
+     //def dockerImage
     // ip address of the docker private repository(nexus)
     
     def dockerRepoUrl = "localhost:5000"
@@ -44,13 +44,13 @@ pipeline {
             sh "whoami"
             sh "ls -all /var/run/docker.sock"
 	    sh "pwd"
-            sh "mv ./target/hello*.jar ./data" 
+            //sh "mv ./target/hello*.jar ./data" 
             
             //dir('target'){
                //dockerImage = docker.build("hello-world-java")
-               sh "docker build -t ${dockerImageName} ."
-               sh "docker tag ${dockerImageName}:${dockerImageTag}"
-               sh "docker push ${dockerImageTag}"
+            sh "docker build -t ${dockerImageName} ."
+            sh "docker tag ${dockerImageName}:${dockerImageTag}"
+            sh "docker push ${dockerImageTag}"
             //}
             
          }    
