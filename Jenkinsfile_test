@@ -50,7 +50,7 @@ pipeline {
             //dir('target'){
                //dockerImage = docker.build("hello-world-java")
             sh "docker build -t ${dockerImageName} ."
-            sh "docker tag ${dockerImageName}:${dockerImageTag}"
+            sh "docker tag ${dockerImageName}:latest ${dockerImageTag}"
             sh "docker push ${dockerImageTag}"
             //}
             
