@@ -60,8 +60,8 @@ pipeline {
          steps {
             sh "whoami"
             
-            sh "docker pull $(dockerImageTag)"
-            sh "docker run -d -p 9000:9000 $(dockerImageTag)"
+            sh "docker pull ${dockerImageTag}"
+            sh "docker run -d -p 9000:9000 ${dockerImageTag}"
               
          }    
       }
