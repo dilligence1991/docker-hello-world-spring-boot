@@ -17,7 +17,7 @@ FROM openjdk:8-jdk-alpine
 #maintainer 
 MAINTAINER annaliyx
 #expose port 8080
-EXPOSE 8080
+EXPOSE 9000
 
 COPY target/hello*.jar /data
 ##default command
