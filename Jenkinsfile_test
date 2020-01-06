@@ -56,5 +56,15 @@ pipeline {
             
          }    
       }
+      stage('Pull and Run Docker Image') {
+         steps {
+            sh "whoami"
+            
+            sh "docker pull $(dockerImageTag) ."
+            sh "docker run -d -p 8080:8080 $(dockerImageTag)"
+              
+         }    
+      }
+      
    }
 }
