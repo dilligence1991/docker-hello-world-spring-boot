@@ -19,7 +19,9 @@ MAINTAINER annaliyx
 #expose port 8080
 EXPOSE 9000
 CMD pwd
-COPY target/hello*.jar /data
+RUN mkdir /data
+ADD target/hello*.jar /data
+WORKDIR /data
 CMD ls -al /data
 ##default command
 CMD java -jar /data/hello-world-0.1.0.jar
