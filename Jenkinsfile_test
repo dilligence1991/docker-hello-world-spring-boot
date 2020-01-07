@@ -44,6 +44,7 @@ pipeline {
             sh "whoami"
             sh "ls -all /var/run/docker.sock"
 	    sh "pwd"
+	    sh "chmod 755 ./target/*.jar"
             //sh "mkdir data"
             //sh "cp ./target/hello*.jar ./data" 
             
